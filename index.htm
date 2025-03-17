@@ -121,10 +121,33 @@
 
     <script>
         document.getElementById("devolucaoForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let codigo = "DEV-" + Math.floor(1000 + Math.random() * 9000); // Gera um número entre 1000 e 9999
-            document.getElementById("codigo").innerText = "Código Gerado: " + codigo;
-            this.reset();
+    event.preventDefault();
+
+    let codigo = "DEV-" + Math.floor(1000 + Math.random() * 9000); // Gera um número entre 1000 e 9999
+
+    let data = {
+        supervisor: document.getElementById("supervisor").value,
+        vendedor: document.getElementById("vendedor").value,
+        cliente: document.getElementById("cliente").value,
+        cnpj: document.getElementById("cnpj").value,
+        nf: document.getElementById("nf").value,
+        motivo: document.getElementById("motivo").value,
+        data: document.getElementById("data").value,
+        freteiro: document.getElementById("freteiro").value,
+        codigo: codigo
+    };
+
+    fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    document.getElementById("codigo").innerText = "Código Gerado: " + codigo;
+    this.reset();
+});
+;
         });
     </script>
 
